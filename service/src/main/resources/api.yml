@@ -7,15 +7,16 @@ info:
 servers:
   - url: 'localhost:3000'
 paths:
-  /rooms:
+  /rooms/{id}:
     get:
-      summary: 'Return rooms'
-      operationId: listRooms
+      summary: 'Return a room by id'
+      operationId: getRoom
       tags:
         - room
       parameters:
         - name: id
-          in: query
+          in: path
+          required: true
           description: ID of the room
           schema:
             type: integer
@@ -26,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Room'
+                $ref: '#/components/schemas/RoomDTO'
         default:
           description: Unexpected error
           content:
@@ -35,7 +36,7 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Room:
+    RoomDTO:
       type: object
       properties:
         id:
@@ -43,6 +44,8 @@ components:
           format: int64
         name:
           type: string
+        seats:
+          type: integer
     Error:
       type: object
       required:
