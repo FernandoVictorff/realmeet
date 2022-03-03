@@ -22,18 +22,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        200:
           description: 'OK'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoomDTO'
-        default:
-          description: Unexpected error
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ResponseError'
 components:
   schemas:
     RoomDTO:
@@ -46,7 +46,7 @@ components:
           type: string
         seats:
           type: integer
-    Error:
+    ResponseError:
       type: object
       required:
         - code
@@ -55,6 +55,8 @@ components:
         code:
           type: integer
           format: int32
+        status:
+          type: string
         message:
           type: string
   securitySchemes:
