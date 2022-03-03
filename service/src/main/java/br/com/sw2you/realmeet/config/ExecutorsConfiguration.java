@@ -23,7 +23,7 @@ public class ExecutorsConfiguration {
             maxPoolSize,
             keepAliveSeconds,
             TimeUnit.SECONDS,
-            new ArrayBlockingQueue<>(queueCapacity,true));
+            new ArrayBlockingQueue<>(queueCapacity, true)
+        );
     }
-
 }

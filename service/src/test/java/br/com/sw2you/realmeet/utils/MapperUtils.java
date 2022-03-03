@@ -10,5 +10,4 @@ public final class MapperUtils {
     public static RoomMapper roomMapper() {
         return Mappers.getMapper(RoomMapper.class);
     }
-
 }

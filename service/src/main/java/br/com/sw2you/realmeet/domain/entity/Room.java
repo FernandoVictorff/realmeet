@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "room")
 public class Room implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,11 +58,12 @@ public class Room implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return
+        return (
             Objects.equals(id, room.id) &&
             Objects.equals(name, room.name) &&
             Objects.equals(seats, room.seats) &&
-            Objects.equals(active, room.active);
+            Objects.equals(active, room.active)
+        );
     }
 
     @Override
@@ -73,18 +73,7 @@ public class Room implements Serializable {
 
     @Override
     public String toString() {
-        return (
-            "Room{" +
-            "id=" +
-            id +
-            ", name='" +
-            name + '\'' +
-            ", seats=" +
-            seats +
-            ", active=" +
-            active +
-            '}'
-            );
+        return ("Room{" + "id=" + id + ", name='" + name + '\'' + ", seats=" + seats + ", active=" + active + '}');
     }
 
     public static Builder newBuilder() {
@@ -97,8 +86,7 @@ public class Room implements Serializable {
         private Integer seats;
         private Boolean active;
 
-        private Builder() {
-        }
+        private Builder() {}
 
         public Builder id(Long id) {
             this.id = id;

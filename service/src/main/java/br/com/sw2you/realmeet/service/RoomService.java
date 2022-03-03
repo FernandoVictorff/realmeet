@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class RoomService {
-
     private final RoomRepository roomRepository;
     private final RoomMapper roomMapper;
 
@@ -28,5 +27,4 @@ public class RoomService {
         Room room = roomRepository.findById(id).orElseThrow(() -> new RoomNotFoundException("Room not found: " + id));
         return roomMapper.fromEntityToDto(room);
     }
-
 }

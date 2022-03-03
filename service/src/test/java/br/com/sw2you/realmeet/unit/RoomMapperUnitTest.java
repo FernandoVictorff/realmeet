@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RoomMapperUnitTest extends BaseUnitTest {
-
     private RoomMapper victim;
 
     @BeforeEach

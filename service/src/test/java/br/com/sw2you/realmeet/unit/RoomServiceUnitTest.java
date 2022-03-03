@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 class RoomServiceUnitTest extends BaseUnitTest {
-
     private RoomService victim;
 
     @Mock
