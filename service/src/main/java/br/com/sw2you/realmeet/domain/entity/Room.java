@@ -31,6 +31,7 @@ public class Room implements Serializable {
         this.active = active;
     }
 
+    @PrePersist
     public void prePersist() {
         if (isNull(active)) {
             active = true;

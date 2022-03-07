@@ -3,7 +3,7 @@ package br.com.sw2you.realmeet.util;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class ResponseEntityUtils {
+public final class ResponseEntityUtils {
 
     private ResponseEntityUtils() {}
 
