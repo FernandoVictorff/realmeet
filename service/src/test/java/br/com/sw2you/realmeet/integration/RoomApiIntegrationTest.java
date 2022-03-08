@@ -2,7 +2,11 @@ package br.com.sw2you.realmeet.integration;
 
 import static br.com.sw2you.realmeet.utils.TestConstants.DEFAULT_ROOM_ID;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.newRoomBuilder;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import br.com.sw2you.realmeet.api.facade.RoomApi;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
