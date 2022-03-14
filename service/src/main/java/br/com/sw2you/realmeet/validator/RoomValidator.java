@@ -2,9 +2,12 @@ package br.com.sw2you.realmeet.validator;
 
 import static br.com.sw2you.realmeet.validator.ValidatorConstants.*;
 import static br.com.sw2you.realmeet.validator.ValidatorUtils.*;
+import static java.util.Objects.isNull;
 
 import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
+import br.com.sw2you.realmeet.api.model.UpdateRoomDTO;
 import br.com.sw2you.realmeet.domain.repository.RoomRepository;
+import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +25,21 @@ public class RoomValidator {
             validateName(createRoomDTO.getName(), vallidationErrors) &&
             validateSeats(createRoomDTO.getSeats(), vallidationErrors)
         ) {
-            validateNameDuplicate(createRoomDTO.getName(), vallidationErrors);
+            validateNameDuplicate(null, createRoomDTO.getName(), vallidationErrors);
+        }
+
+        throwOnError(vallidationErrors);
+    }
+
+    public void validate(Long roomId, UpdateRoomDTO updateRoomDTO) {
+        var vallidationErrors = new ValidationErrors();
+
+        if (
+            validateRequired(roomId, ROOM_ID, vallidationErrors) &&
+            validateName(updateRoomDTO.getName(), vallidationErrors) &&
+            validateSeats(updateRoomDTO.getSeats(), vallidationErrors)
+        ) {
+            validateNameDuplicate(roomId, updateRoomDTO.getName(), vallidationErrors);
         }
 
         throwOnError(vallidationErrors);
@@ -43,9 +60,15 @@ public class RoomValidator {
         );
     }
 
-    private void validateNameDuplicate(String name, ValidationErrors vallidationErrors) {
+    private void validateNameDuplicate(Long roomIdToExclude, String name, ValidationErrors vallidationErrors) {
         roomRepository
             .findByNameAndActive(name, true)
-            .ifPresent(__ -> vallidationErrors.add(ROOM_NAME, ROOM_NAME + DUPLICATE));
+            .ifPresent(
+                room -> {
+                    if (isNull(roomIdToExclude) || !Objects.equals(room.getId(), roomIdToExclude)) {
+                        vallidationErrors.add(ROOM_NAME, ROOM_NAME + DUPLICATE);
+                    }
+                }
+            );
     }
 }
