@@ -19,16 +19,16 @@ public class RoomValidator {
     }
 
     public void validate(CreateRoomDTO createRoomDTO) {
-        var vallidationErrors = new ValidationErrors();
+        var validationErrors = new ValidationErrors();
 
         if (
-            validateName(createRoomDTO.getName(), vallidationErrors) &&
-            validateSeats(createRoomDTO.getSeats(), vallidationErrors)
+            validateName(createRoomDTO.getName(), validationErrors) &&
+            validateSeats(createRoomDTO.getSeats(), validationErrors)
         ) {
-            validateNameDuplicate(null, createRoomDTO.getName(), vallidationErrors);
+            validateNameDuplicate(null, createRoomDTO.getName(), validationErrors);
         }
 
-        throwOnError(vallidationErrors);
+        throwOnError(validationErrors);
     }
 
     public void validate(Long roomId, UpdateRoomDTO updateRoomDTO) {
