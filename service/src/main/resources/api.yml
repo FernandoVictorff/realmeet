@@ -142,6 +142,8 @@ paths:
           description: 'Deleted Successfully'
         404:
           description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
 
 components:
   schemas:
