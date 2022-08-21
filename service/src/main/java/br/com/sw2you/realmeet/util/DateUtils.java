@@ -6,11 +6,20 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 public final class DateUtils {
-    private static final ZoneOffset DEFAULT_TIMEZONE = ZoneOffset.of("-03:00");
+    public static final ZoneOffset DEFAULT_TIMEZONE = ZoneOffset.of("-03:00");
 
     private DateUtils() {}
 
     public static OffsetDateTime now() {
         return OffsetDateTime.now(DEFAULT_TIMEZONE).truncatedTo(MILLIS);
+    }
+
+    public static boolean isOverlapping(
+        OffsetDateTime start1,
+        OffsetDateTime end1,
+        OffsetDateTime start2,
+        OffsetDateTime end2
+    ) {
+        return start1.compareTo(end2) < 0 && end1.compareTo(start2) > 0;
     }
 }

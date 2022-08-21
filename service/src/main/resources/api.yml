@@ -100,6 +100,49 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
 
   /allocations:
+    get:
+      summary: 'Lists allocations'
+      operationId: listAllocations
+      tags:
+        - allocation
+      parameters:
+        - name: employeeEmail
+          in: query
+          description: Email of the employee
+          schema:
+            type: string
+        - name: roomId
+          in: query
+          description: Room ID
+          schema:
+            type: integer
+            format: int64
+        - name: startAt
+          in: query
+          description: Allocation start time
+          schema:
+            type: string
+            format: date
+        - name: endAt
+          in: query
+          description: Allocation end time
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/orderBy'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/page'
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AllocationDTO'
+
     post:
       summary: 'Creates an allocation'
       operationId: createAllocation
@@ -254,3 +297,24 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ResponseError'
+  parameters:
+    orderBy:
+      name: orderBy
+      in: query
+      description: Field to order by
+      schema:
+        type: string
+
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of returned records
+      schema:
+        type: integer
+
+    page:
+      name: page
+      in: query
+      description: The page of records to fetch (0 index based)
+      schema:
+        type: integer
