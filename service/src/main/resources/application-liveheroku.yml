@@ -1,0 +1,10 @@
+# =================================
+# = Spring
+# =================================
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-107-23-76-12.compute-1.amazonaws.com:5432/d53g47scvio00p
+    username: svsxjaiicegmjs
+  flyway:
+    locations: classpath:/db/migration/postgresql
